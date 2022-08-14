@@ -7,12 +7,12 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <h2><a href="http://localhost:3000/signup">Signup</a></h2>
     <div class='items'>
      <% for(var i=0; i < data.length; i++) { %>
       <div class='item'>
-       <h3><%= data[i].name %></h3>
-       <p><%= data[i].id %></p>
-       <img src='<%= data[i].url %>'/>
+	      <h3><a class='item-link'><%= data[i].name %></a></h3>
+       <img class='item-image' src='<%= data[i].url %>'/>
       </div>
      <% } %>
     </div>
