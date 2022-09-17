@@ -1,11 +1,11 @@
 const config = {
   db: {
-    host: "remotemysql.com",
-    user: "w0kpFZu0FV",
-    password: "hmqFjmHrbl",
-    database: "w0kpFZu0FV",
+    host: "localhost", //database host
+    user: "root", //database user
+    password: "", //database user password
+    database: "legodb", //database name
   },
-  listPerPage: 10,
+  sessionSecret: "", //session secret
 };
 
 module.exports = config;

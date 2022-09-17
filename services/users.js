@@ -13,6 +13,28 @@ async function create(id, username, email, password){
   return {message};
 }
 
+async function getData(username) {
+  const result = await db.query('SELECT * FROM `users` WHERE `username` = ?', [username], function(err) {
+    if (err) {
+      console.error(err)
+    }
+  })
+
+  return result[0];
+}
+
+async function getEmailData(email) {
+  const result = await db.query('SELECT * FROM `users` WHERE `email` = ?', [email], function(err) {
+    if (err) {
+      console.error(err)
+    }
+  })
+  console.log(result)
+  return result[0];
+}
+
 module.exports = {
-  create
+  create,
+  getData,
+  getEmailData
 }

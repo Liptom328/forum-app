@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Chat</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Chat</h1>
+    <p id="title">Welcome to Chat</p>
+    <h2><a href="http://localhost:3000/app">App</a></h2>
     <h2><a href="http://localhost:3000/signup">Signup</a></h2>
-    <div class='items'>
-     <% for(var i=0; i < data.length; i++) { %>
-      <div class='item'>
-	      <h3><a class='item-link'><%= data[i].name %></a></h3>
-       <img class='item-image' src='<%= data[i].url %>'/>
-      </div>
-     <% } %>
-    </div>
+    <h2><a href="http://localhost:3000/login">Login</a></h2>
+    <script src="/scripts/index.js"></script>
   </body>
 </html>

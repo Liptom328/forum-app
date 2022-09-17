@@ -3,20 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "biguint-format": "^1.0.2",
     "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
+    "express-session": "^1.17.3",
     "flake-idgen": "^1.4.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql2": "^2.3.3",
     "promise": "^8.1.0",
-    "snowflake-generator": "^1.0.2"
+    "snowflake-generator": "^1.0.2",
+    "socket.io": "^4.5.2"
   }
 }
