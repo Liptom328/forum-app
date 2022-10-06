@@ -23,18 +23,17 @@ async function getData(username) {
   return result[0];
 }
 
-async function getEmailData(email) {
-  const result = await db.query('SELECT * FROM `users` WHERE `email` = ?', [email], function(err) {
+async function getDataById(userId) {
+  const result = await db.query('SELECT * FROM `users` WHERE `id` = ?', [userId], function(err) {
     if (err) {
       console.error(err)
     }
   })
-  console.log(result)
   return result[0];
 }
 
 module.exports = {
   create,
   getData,
-  getEmailData
+  getDataById
 }

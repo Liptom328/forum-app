@@ -4,7 +4,7 @@ import config from "../../config";
 export default withIronSessionApiRoute(
   function logoutRoute(req, res, session) {
     req.session.destroy();
-    res.redirect('http://localhost:3000?success=true')
+    res.redirect('http://localhost:3000')
   },
   {
     cookieName: "poll_auth",

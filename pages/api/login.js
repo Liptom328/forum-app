@@ -19,15 +19,16 @@ export default withIronSessionApiRoute(
                 password: password,
               };
               await req.session.save();
-              res.redirect('http://localhost:3000?success=true')
+              res.redirect('http://localhost:3000')
              } else {
-              res.redirect('http://localhost:3000/login?err=Invalid%20login%20data.')
+              res.redirect('http://localhost:3000/login')
              }
            });
         } else {
-           res.redirect('http://localhost:3000/login?err=User%20with%20this%20name%20doesnt%20exist.')
+           res.redirect('http://localhost:3000/login')
         }      
       } catch(err) {
+        res.send("Error")
         console.error("Error while logging in ", err.message);
       }
   },
