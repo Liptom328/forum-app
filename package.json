@@ -9,14 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
+    "flowbite-typography": "^1.0.3",
     "fs": "^0.0.1-security",
     "iron-session": "^6.2.1",
     "mysql2": "^2.3.3",
-    "net": "^1.0.2",
     "next": "12.3.0",
     "promise": "^8.2.0",
     "react": "18.2.0",
