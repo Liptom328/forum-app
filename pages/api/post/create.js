@@ -10,8 +10,6 @@ export default async function handler(req, res) {
         var description = req.body.description;
         var content = req.body.content;
 
-        console.log(description)
-        console.log(content)
         await posts.create(id, creator, title, description, content)
         
         res.redirect('http://localhost:3000?message="Post%20created%20sucessfully.')

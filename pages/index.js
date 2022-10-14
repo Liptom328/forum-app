@@ -54,7 +54,7 @@ export default function Home({ user, posts }) {
                       <div class="flex justify-between items-center">
                           <div class="flex items-center space-x-4">
                               <img class="w-7 h-7 rounded-full" src="/guest.jpg" alt="User Avatar" />
-                              <a href={"/user/" + post.creator}><span class="font-medium dark:text-white hover:underline underline-offset-2">{post.creator}</span></a>
+                              <a href={"/user/" + post.creator}><span class="font-medium text-primary-600 hover:underline underline-offset-2">{post.username}</span></a>
                           </div>
                           <a href={"/post/" + post.postid} class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
                               Read more

@@ -14,7 +14,7 @@ async function create(postid, creator, title, description, content){
 }
 
 async function getDataById(postid) {
-  const result = await db.query('SELECT * FROM posts WHERE postid = ?', [postid], function(err) {
+  const result = await db.query('SELECT p.postid, p.creator, p.title, p.description, p.content, u.username FROM posts p INNER JOIN users u ON u.id = p.creator WHERE postid = ?', [postid], function(err) {
     if (err) {
       console.error(err)
     }
@@ -24,7 +24,7 @@ async function getDataById(postid) {
 }
 
 async function getAll() {
-  const result = await db.query('SELECT * FROM `posts`', [], function(err) {
+  const result = await db.query('SELECT p.title, p.description, p.content, p.postid, p.creator, u.username FROM posts p INNER JOIN users u ON u.id = p.creator', [], function(err) {
     if (err) {
       console.error(err)
     }

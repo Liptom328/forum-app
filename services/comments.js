@@ -13,6 +13,17 @@ async function create(id, creator, postid, content){
   return {message};
 }
 
+async function getAll(postid) {
+  const result = await db.query('SELECT c.id, c.creator, c.postid, c.content, u.username FROM comments c INNER JOIN users u ON u.id = c.creator WHERE postid = ?', [postid], function(err) {
+    if (err) {
+      console.error(err)
+    }
+  })
+
+  return result;
+}
+
 module.exports = {
-  create
+  create,
+  getAll
 }

@@ -9,11 +9,12 @@ import { withIronSessionSsr } from 'iron-session/next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Spinner } from "flowbite-react";
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 
 export default function Post({ user }) {
   const router = useRouter();
   const [data, setData] = useState(null)
-  const [creatorData, setCreatorData] = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -22,14 +23,8 @@ export default function Post({ user }) {
         axios.get(`/api/post/get/${router.query.id}`)
         .then(function (response) {
           if (response.data.message === "OK") {
-            setData(response.data)
-            axios.get(`/api/user/${response.data.creator}`)
-            .then(function (response) {
-              if (response.data.message === "OK") {
-                setCreatorData(response.data)
-                setLoading(false)
-              }
-            })
+            setData(response.data);
+            setLoading(false);
           }
         })
       }
@@ -69,10 +64,12 @@ export default function Post({ user }) {
               <p className="text-lg">{data.description}</p>
             </div>
             <div className="mt-2 ml-7">
-              <a className="text-sky-600 text-lg font-semibold hover:underline underline-offset-2" href={"/user/" + data.creator}>{creatorData.username}</a>
+              <a className="text-sky-600 text-lg font-semibold hover:underline underline-offset-2" href={"/user/" + data.creator}>{data.username}</a>
             </div>
             <div className="mt-7 ml-7 mr-7 mb-7">
-              <p className="text-xl break-words md:break-all">{data.content}</p>
+              <article className="prose prose-lg prose-a:text-primary-600 prose-img:w-100 prose-img:h-100 prose-a:no-underline prose-a:hover:underline break-words md:break-all prose-a:underline-offset-2 max-w-none">
+                <ReactMarkdown remarkPlugins={[gfm]}>{data.content}</ReactMarkdown>
+              </article>
             </div>
             <div className="ml-7 mb-7">
               <h1 className="text-3xl font-semibold">Comments</h1>
@@ -80,7 +77,7 @@ export default function Post({ user }) {
                 user === null 
                 ? ( <p className="mt-4">You need to be logged in to post comments.</p> )
                 : (
-                  <div className="mt-5 flex">
+                  <div className="mt-4 flex">
                     <form action="/api/comment/create" method="post">
                       <input type="hidden" name="creator" value={user.id}/>
                       <input type="hidden" name="postid" value={data.id}/>
@@ -90,6 +87,21 @@ export default function Post({ user }) {
                   </div>
                 )
               }
+              <div>
+                {data.comments.map((comment) => (
+                  <div className="mb-5 mt-4">
+                    <div className="flex items-center space-x-3">
+                      <img src="/guest.jpg" className="w-8 h-8 rounded-full"/>
+                      <a href={"/user/" + comment.creator} className="text-primary-600 font-semibold hover:underline underline-offset-2">{comment.username}</a>
+                    </div>
+                    <div className="mt-2 flex items-center space-x-4">
+                      <article className="prose prose-lg prose-a:text-primary-600 prose-a:no-underline prose-a:hover:underline break-words md:break-all prose-a:underline-offset-2 max-w-none">
+                        <ReactMarkdown remarkPlugins={[gfm]}>{comment.content}</ReactMarkdown>
+                      </article>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
           <Footer/>
